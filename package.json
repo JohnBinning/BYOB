@@ -1,0 +1,40 @@
+{
+  "name": "BYOB",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "start": "nodemon Server/server.js",
+    "lint": "./node_modules/.bin/eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnBinning/BYOB.git"
+  },
+  "keywords": [],
+  "author": "John Binning",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnBinning/BYOB/issues"
+  },
+  "homepage": "https://github.com/JohnBinning/BYOB#readme",
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.4.2",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "knex": "^0.13.0",
+    "node": "0.0.0",
+    "pg": "^6.4.0"
+  }
+}
