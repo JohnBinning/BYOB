@@ -1,3 +1,4 @@
+/* eslint-disable */
 const franchises = [
   {
     "franchID": "ALT",
@@ -141,7 +142,7 @@ const franchises = [
     "founded": "18"
   },
   {
-    "franchID": "CIN",
+    "franchID": "CRS",
     "franchName": "Cincinnati Red Stockings",
     "active": "N",
     "league": "National",
