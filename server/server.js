@@ -27,51 +27,37 @@ app.set('secretKey', config.CLIENT_SECRET);
 app.post('/authenticate', (request, response) => {
   const user = request.body;
 
-    // If the user enters credentials that don't match our hard-coded
-    // credentials in our .env configuration file, send a JSON error
   if (user.username !== config.USERNAME || user.password !== config.PASSWORD) {
     response.status(403).send({
       success: false,
       message: 'Invalid Credentials'
     });
-  }
-
-    // If the credentials are accurate, create a token and send it back
-  else {
-    let token = jwt.sign(user, app.get('secretKey'), {
+  } else {
+    const token = jwt.sign(user, app.get('secretKey'), {
       expiresIn: 172800 // expires in 48 hours
     });
 
     response.json({
       success: true,
       username: user.username,
-      token: token
+      token
     });
   }
 });
 
 const checkAuth = (request, response, next) => {
-
-  // Check headers/POST body/URL params for an authorization token
   const token = request.body.token ||
                 request.param('token') ||
                 request.headers.authorization;
 
   if (token) {
-    // do a lot of fancy things
     jwt.verify(token, app.get('secretKey'), (error, decoded) => {
-
-    // If the token is invalid or expired, respond with an error
       if (error) {
         return response.status(403).send({
           success: false,
           message: 'Invalid authorization token.'
         });
-      }
-
-    // If the token is valid, save the decoded version to the
-    // request for use in other routes & continue on with next()
-      else {
+      } else {
         request.decoded = decoded;
         next();
       }
