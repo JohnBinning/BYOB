@@ -1,11 +1,12 @@
 const inductedPeople = require('../../../data/inductedPeople.js');
 
 const createPerson = (knex, person) => {
-  return knex('inducted_people').insert({ //knex.insert is a Promise and MUST be returned
+  return knex('inducted_people').insert({
     career: person.career,
     name: person.name,
     position: person.position,
     primary_team: person.primaryTeam,
+    vote_percentage: person.votePercentage,
     year_inducted: person.yearInducted,
     team_id: person.teamId,
   }, 'id');

@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken');
 
 const port = (process.env.PORT || 3000);
 const app = express();
-const password = process.env.DOMAIN_ENV || 'baseball';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +33,7 @@ app.post('/authenticate', (request, response) => {
     });
   } else {
     const token = jwt.sign(user, app.get('secretKey'), {
-      expiresIn: 172800 // expires in 48 hours
+      expiresIn: 1209600
     });
 
     response.json({
@@ -70,6 +69,10 @@ const checkAuth = (request, response, next) => {
   }
 };
 
+// routes
+
+// franchises
+
 app.get('/api/v1/franchises', (request, response) => {
   database('franchises').select()
     .then((franchises) => {
@@ -84,24 +87,6 @@ app.get('/api/v1/franchises', (request, response) => {
   .catch((error) => {
     response.status(500).json({ error });
   });
-});
-
-app.put('/api/v1/franchises/id/:id', checkAuth, (request, response) => {
-  const franchUpdate = request.body.franchise;
-  database('franchises').where('id', request.params.id).select()
-    .update(franchUpdate, 'id')
-    .then((franchise) => {
-      if (franchise.length) {
-        response.status(201).json(franchise);
-      } else {
-        response.status(422).json({
-          error: 'unsuccessful edit, please try again'
-        });
-      }
-    })
-    .catch((error) => {
-      response.status(500).json({ error });
-    });
 });
 
 app.get('/api/v1/franchises/id/:id', (request, response) => {
@@ -136,6 +121,46 @@ app.get('/api/v1/franchises/name/:name', (request, response) => {
   });
 });
 
+app.put('/api/v1/franchises/id/:id', checkAuth, (request, response) => {
+  const franchUpdate = request.body.franchise;
+  database('franchises').where('id', request.params.id).select()
+    .update(franchUpdate, 'id')
+    .then((franchise) => {
+      if (franchise.length) {
+        response.status(201).json(franchise);
+      } else {
+        response.status(422).json({
+          error: 'unsuccessful edit, please try again'
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
+
+app.post('/api/v1/franchises', checkAuth, (request, response) => {
+  const franchise = request.body.newFranchise;
+
+  for (const requiredParameter of ['franch_id', 'franch_name', 'active']) {
+    if (!franchise[requiredParameter]) {
+      return response.status(422).json({
+        error: `Expected format: { franchId: <String>, franchName: <String>, active: <String>
+        with optional values of league: <String>, founded: <String> }. You are missing a ${requiredParameter} property.`
+      });
+    }
+  }
+
+  database('franchises').insert(franchise, 'id')
+  .then((franchiseId) => {
+    response.status(201).json({ id: franchiseId[0] });
+  })
+  .catch((error) => {
+    response.status(500).json({ error });
+  });
+});
+
+// inducted_people
 
 app.get('/api/v1/inducted_people', (request, response) => {
   database('inducted_people').select()
@@ -151,6 +176,24 @@ app.get('/api/v1/inducted_people', (request, response) => {
   .catch((error) => {
     response.status(500).json({ error });
   });
+});
+
+app.put('/api/v1/inducted_people/id/:id', checkAuth, (request, response) => {
+  const personUpdate = request.body.person;
+  database('inducted_people').where('id', request.params.id).select()
+    .update(personUpdate, 'id')
+    .then((person) => {
+      if (person.length) {
+        response.status(201).json(person);
+      } else {
+        response.status(422).json({
+          error: 'unsuccessful edit, please try again'
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
 });
 
 app.get('/api/v1/inducted_people/id/:id', (request, response) => {
@@ -185,6 +228,29 @@ app.get('/api/v1/inducted_people/name/:name', (request, response) => {
   });
 });
 
+app.post('/api/v1/inducted_people', checkAuth, (request, response) => {
+  const person = request.body.newPerson;
+
+  for (const requiredParameter of ['career', 'induction_method', 'name', 'primary_team', 'vote_percentage', 'year_inducted', 'team_id']) {
+    if (!person[requiredParameter]) {
+      return response.status(422).json({
+        error: `Expected format: { career: <String>, induction_method: <String>, name: <String>, primary_team: <String>, vote_percentage: <String>, year_inducted: <String>,
+        team_id: <Integer>}. You are missing a ${requiredParameter} property.`
+      });
+    }
+  }
+
+  database('inducted_people').insert(person, 'id')
+  .then((personId) => {
+    response.status(201).json({ id: personId[0] });
+  })
+  .catch((error) => {
+    response.status(500).json({ error });
+  });
+});
+
+// batters
+
 app.get('/api/v1/batter_data', (request, response) => {
   database('batter_data').select()
     .then((batterData) => {
@@ -199,6 +265,24 @@ app.get('/api/v1/batter_data', (request, response) => {
   .catch((error) => {
     response.status(500).json({ error });
   });
+});
+
+app.put('/api/v1/batter_data/id/:id', checkAuth, (request, response) => {
+  const batterUpdate = request.body.batter;
+  database('batter_data').where('id', request.params.id).select()
+    .update(batterUpdate, 'id')
+    .then((batter) => {
+      if (batter.length) {
+        response.status(201).json(batter);
+      } else {
+        response.status(422).json({
+          error: 'unsuccessful edit, please try again'
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
 });
 
 app.get('/api/v1/batter_data/id/:id', (request, response) => {
@@ -233,6 +317,8 @@ app.get('/api/v1/batter_data/name/:name', (request, response) => {
   });
 });
 
+// pitchers
+
 app.get('/api/v1/pitcher_data', (request, response) => {
   database('pitcher_data').select()
     .then((pitcherData) => {
@@ -247,6 +333,24 @@ app.get('/api/v1/pitcher_data', (request, response) => {
   .catch((error) => {
     response.status(500).json({ error });
   });
+});
+
+app.put('/api/v1/pitcher_data/id/:id', checkAuth, (request, response) => {
+  const pitcherUpdate = request.body.pitcher;
+  database('pitcher_data').where('id', request.params.id).select()
+    .update(pitcherUpdate, 'id')
+    .then((pitcher) => {
+      if (pitcher.length) {
+        response.status(201).json(pitcher);
+      } else {
+        response.status(422).json({
+          error: 'unsuccessful edit, please try again'
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
 });
 
 app.get('/api/v1/pitcher_data/id/:id', (request, response) => {
