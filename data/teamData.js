@@ -139,7 +139,7 @@ const franchises = [
     "franchName": "Cincinnati Reds",
     "active": "Y",
     "league": "National",
-    "founded": "18"
+    "founded": "1881"
   },
   {
     "franchID": "CRS",

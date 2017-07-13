@@ -1,7 +1,7 @@
 const franchises = require('../../../data/teamData.js');
 
 const createFranchise = (knex, franchise) => {
-  return knex('franchises').insert({ //knex.insert is a Promise and MUST be returned
+  return knex('franchises').insert({
     franch_id: franchise.franchID,
     franch_name: franchise.franchName,
     active: franchise.active,

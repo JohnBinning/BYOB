@@ -1,7 +1,7 @@
 const batters = require('../../../data/batterData.js');
 
 const createPerson = (knex, person) => {
-  return knex('batter_data').insert({ //knex.insert is a Promise and MUST be returned
+  return knex('batter_data').insert({
     avg: person.avg,
     hits: person.hits,
     hr: person.hr,
