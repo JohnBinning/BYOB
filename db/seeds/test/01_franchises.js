@@ -18,19 +18,6 @@ const createPitcher = (knex, person) => {
   }, 'id');
 };
 
-exports.seed = (knex, Promise) => {
-  return knex('pitcher_data').del()
-    .then(() => {
-      const pitcherPromises = [];
-      pitchers.forEach((pitcher) => {
-        pitcherPromises.push(createPitcher(knex, pitcher));
-      });
-
-      return Promise.all(pitcherPromises);
-    })
-    .catch(error => console.log(`Error seeding data: ${error}`));
-};
-
 const createBatter = (knex, person) => {
   return knex('batter_data').insert({
     id: person.id,
@@ -47,21 +34,9 @@ const createBatter = (knex, person) => {
   }, 'id');
 };
 
-exports.seed = (knex, Promise) => {
-  return knex('batter_data').del()
-    .then(() => {
-      const batterPromises = [];
-      batters.forEach((batter) => {
-        batterPromises.push(createBatter(knex, batter));
-      });
-
-      return Promise.all(batterPromises);
-    })
-    .catch(error => console.log(`Error seeding data: ${error}`));
-};
-
 const createPerson = (knex, person) => {
   return knex('inducted_people').insert({
+    id: person.id,
     career: person.career,
     name: person.name,
     position: person.position,
@@ -70,19 +45,6 @@ const createPerson = (knex, person) => {
     year_inducted: person.yearInducted,
     team_id: person.teamId,
   }, 'id');
-};
-
-exports.seed = (knex, Promise) => {
-  return knex('inducted_people').del()
-    .then(() => {
-      const peoplePromises = [];
-      inductedPeople.forEach((people) => {
-        peoplePromises.push(createPerson(knex, people));
-      });
-
-      return Promise.all(peoplePromises);
-    })
-    .catch(error => console.log(`Error seeding data: ${error}`));
 };
 
 const createFranchise = (knex, franchise) => {
@@ -97,7 +59,10 @@ const createFranchise = (knex, franchise) => {
 };
 
 exports.seed = (knex, Promise) => {
-  return knex('franchises').del()
+  return knex('pitcher_data').del()
+    .then(() => knex('batter_data').del())
+    .then(() => knex('inducted_people').del())
+    .then(() => knex('franchises').del())
     .then(() => {
       const franchisePromises = [];
       franchises.forEach((franchise) => {
@@ -105,6 +70,30 @@ exports.seed = (knex, Promise) => {
       });
 
       return Promise.all(franchisePromises);
+    })
+    .then(() => {
+      const peoplePromises = [];
+      inductedPeople.forEach((people) => {
+        peoplePromises.push(createPerson(knex, people));
+      });
+
+      return Promise.all(peoplePromises);
+    })
+    .then(() => {
+      const batterPromises = [];
+      batters.forEach((batter) => {
+        batterPromises.push(createBatter(knex, batter));
+      });
+
+      return Promise.all(batterPromises);
+    })
+    .then(() => {
+      const pitcherPromises = [];
+      pitchers.forEach((pitcher) => {
+        pitcherPromises.push(createPitcher(knex, pitcher));
+      });
+
+      return Promise.all(pitcherPromises);
     })
     .catch(error => console.log(`Error seeding data: ${error}`));
 };
