@@ -1,7 +1,7 @@
 const pitchers = require('../../../data/pitcherData.js');
 
 const createPerson = (knex, person) => {
-  return knex('pitcher_data').insert({ //knex.insert is a Promise and MUST be returned
+  return knex('pitcher_data').insert({
     name: person.name,
     games: person.games,
     starts: person.starts,

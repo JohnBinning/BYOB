@@ -317,6 +317,27 @@ app.get('/api/v1/batter_data/name/:name', (request, response) => {
   });
 });
 
+app.post('/api/v1/batter_data', checkAuth, (request, response) => {
+  const person = request.body.newBatter;
+
+  for (const requiredParameter of ['avg', 'hits', 'name', 'obp', 'rbi', 'runs', 'induction_id', 'slg', 'sb']) {
+    if (!person[requiredParameter]) {
+      return response.status(422).json({
+        error: `Expected format: { avg: <String>, hits: <String>, name: <String>, obp: <String>, rbi: <String>, runs: <String>, sb: <String>, slg: <String>,
+        induction_id: <Integer>}. You are missing a ${requiredParameter} property.`
+      });
+    }
+  }
+
+  database('batter_data').insert(person, 'id')
+  .then((personId) => {
+    response.status(201).json({ id: personId[0] });
+  })
+  .catch((error) => {
+    response.status(500).json({ error });
+  });
+});
+
 // pitchers
 
 app.get('/api/v1/pitcher_data', (request, response) => {
@@ -380,6 +401,27 @@ app.get('/api/v1/pitcher_data/name/:name', (request, response) => {
         });
       }
     })
+  .catch((error) => {
+    response.status(500).json({ error });
+  });
+});
+
+app.post('/api/v1/pitcher_data', checkAuth, (request, response) => {
+  const pitcher = request.body.newPitcher;
+
+  for (const requiredParameter of ['name', 'games', 'starts', 'losses', 'era', 'induction_id', 'strikeouts', 'walks']) {
+    if (!pitcher[requiredParameter]) {
+      return response.status(422).json({
+        error: `Expected format: { name: <String>, games: <String>, starts: <String>, losses: <String>, era: <String>, walks: <String>, strikeouts: <String>,
+        induction_id: <Integer>}. You are missing a ${requiredParameter} property.`
+      });
+    }
+  }
+
+  database('pitcher_data').insert(pitcher, 'id')
+  .then((pitcherId) => {
+    response.status(201).json({ id: pitcherId[0] });
+  })
   .catch((error) => {
     response.status(500).json({ error });
   });

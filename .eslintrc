@@ -4,7 +4,7 @@
   "env": {
     "browser": true,
     "mocha": true,
-    "node": true
+    "node": true,
 },
   "rules": {
     "quotes": [2, "single"],
@@ -16,6 +16,11 @@
     "camelcase": [0],
     "no-shadow": [0],
     "no-multi-assign": [0],
+    "import/no-extraneous-dependencies": "off",
+    "import/newline-after-import": "off",
+    "no-restricted-syntax": "off",
+    "padded-blocks": "off",
+    "no-throw-literal": "off",
     "no-param-reassign": [0],
     "no-else-return": [0],
     "no-unused-expressions": [0],
