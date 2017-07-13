@@ -13,7 +13,6 @@ const chaiHttp = require('chai-http');
 const server = require('../server/server');
 const should = chai.should();
 
-
 chai.use(chaiHttp);
 
 describe('franchise routes', () => {
