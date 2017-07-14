@@ -31,8 +31,8 @@ Put to http://byobaseball.herokuapp.com/api/v1/franchises/id/1
 		body: {
 		"franchise": {
 			"active": "N"
-			},
-			"token": "1234456"  // example, your private token goes here
+		},
+		"token": "1234456"  // example, your private token goes here
 		}
 ```
 
@@ -70,7 +70,7 @@ Delete to http://byobaseball.herokuapp.com/api/v1/franchises/delete/14
 
 body: {
 	"token": "1234456"  // example, your private token goes here
-}
+      }
 ```
 
 #### Inducted People
@@ -95,11 +95,11 @@ Put to http://byobaseball.herokuapp.com/api/v1/inducted_people/id/1
 ```javascript 
 
 body: {
-		"person": {
-			"name": "Roy Hobbs"
-			},
-			"token": "1234456"  // example, your private token goes here
-		}
+	"person": {
+		"name": "Roy Hobbs"
+	},
+	"token": "1234456"  // example, your private token goes here
+	}
 ```
 
 Only put the data fields you would like to update, not all fields will be necessary for every put request
