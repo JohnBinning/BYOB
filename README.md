@@ -44,6 +44,8 @@ If updating active please use capital letters
 
 Post to http://byobaseball.herokuapp.com/api/v1/franchises
 
+```javascript 
+
 body: {
 	"newFranchise": {
 		"franch_id": "BNB",
@@ -54,6 +56,7 @@ body: {
 	},
 	"token": "1234456"  // example, your private token goes here
 }
+```
 
 All data fields in the above example are required
 
@@ -63,9 +66,12 @@ If an inducted person is dependent on the target person, that person's record mu
 
 Delete to http://byobaseball.herokuapp.com/api/v1/franchises/delete/14
 
+```javascript 
+
 body: {
 	"token": "1234456"  // example, your private token goes here
 }
+```
 
 #### Inducted People
 
@@ -86,12 +92,15 @@ Get to http://byobaseball.herokuapp.com/api/v1/inducted_people/name/Ty%20Cobb
 Put to http://byobaseball.herokuapp.com/api/v1/inducted_people/id/1
 (replace 1 with the id of the person you want)
 
+```javascript 
+
 body: {
 		"person": {
 			"name": "Roy Hobbs"
 			},
 			"token": "1234456"  // example, your private token goes here
 		}
+```
 
 Only put the data fields you would like to update, not all fields will be necessary for every put request
 
@@ -100,6 +109,8 @@ Only put the data fields you would like to update, not all fields will be necess
 Post to http://byobaseball.herokuapp.com/api/v1/inducted_people
 
 Posts to new people must include a correct team_id for a franchise that has already been entered.  If you want to enter a new player for a franchise/team that is not yet in the database, you must post the franchise/team first.
+
+```javascript 
 
 body: {
 	"newPerson": {
@@ -114,7 +125,7 @@ body: {
 	"token": "1234456"  // example, your private token goes here
 }
 
-or
+//or
 
 body: {
 	"newPerson": {
@@ -128,6 +139,7 @@ body: {
 	},
 	"token": "1234456"  // example, your private token goes here
 }
+```
 
 All data fields in the above example are required
 
@@ -138,10 +150,12 @@ If a pitcher or batter is dependent on the target person, the pitcher/batter's r
 
 Delete to http://byobaseball.herokuapp.com/api/v1/inducted_people/delete/14
 
+```javascript 
+
 body: {
 	"token": "1234456"  // example, your private token goes here
 }
-
+```
 #### Batters
 
 ##### Get Batters
@@ -161,12 +175,16 @@ Get to http://byobaseball.herokuapp.com/api/v1/batter_data/name/Ty%20Cobb
 Put to http://byobaseball.herokuapp.com/api/v1/batter_data/id/1
 (replace 1 with the id of the batter you want)
 
+```javascript 
+
 body: {
 		"batter": {
 			"hr": "77"
 			},
 			"token": "1234456"  // example, your private token goes here
 		}
+
+```
 
 Only put the data fields you would like to update, not all fields will be necessary for every put request
 
@@ -175,6 +193,9 @@ Only put the data fields you would like to update, not all fields will be necess
 A corresponding inducted person is required before posting a batter.  The induction_id of the batter must match the primary id of the inducted person.
 
 Post to http://byobaseball.herokuapp.com/api/v1/batter_data
+
+```javascript 
+
 
 body: {
 	"newBatter": {
@@ -192,6 +213,8 @@ body: {
 	"token": "1234456"  // example, your private token goes here
 }
 
+```
+
 All data fields in the above example are required
 
 
@@ -199,10 +222,12 @@ All data fields in the above example are required
 
 Delete to http://byobaseball.herokuapp.com/api/v1/batter_data/delete/14
 
+```javascript 
+
 body: {
 	"token": "1234456"  // example, your private token goes here
 }
-
+```
 #### Pitchers
 
 ##### Get Pitchers
@@ -224,6 +249,9 @@ Get to http://byobaseball.herokuapp.com/api/v1/pitcher_data/name/Randy%20Johnson
 Put to http://byobaseball.herokuapp.com/api/v1/pitcher_data/id/1
 (replace 1 with the id of the pitcher you want)
 
+```javascript 
+
+
 body: {
 		"pitcher": {
 			"era": "3.18",
@@ -232,6 +260,8 @@ body: {
 			"token": "1234456"  // example, your private token goes here
 		}
 
+```
+
 Only put the data fields you would like to update, not all fields will be necessary for every put request
 
 ##### Post to pitchers
@@ -239,6 +269,8 @@ Only put the data fields you would like to update, not all fields will be necess
 Post to http://byobaseball.herokuapp.com/api/v1/pitcher_data
 
 A corresponding inducted person is required before posting a pitcher.  The induction_id of the pitcher must match the primary id of the inducted person.
+
+```javascript 
 
 body: {
 	"newPitcher": {
@@ -255,6 +287,8 @@ body: {
 	"token": "1234456"  // example, your private token goes here
 }
 
+```
+
 All data fields in the above example are required
 
 
@@ -262,6 +296,9 @@ All data fields in the above example are required
 
 Delete to http://byobaseball.herokuapp.com/api/v1/pitcher_data/delete/14
 
+```javascript 
+
 body: {
 	"token": "1234456"  // example, your private token goes here
 }
+```
