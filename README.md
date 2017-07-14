@@ -28,12 +28,12 @@ Put to http://byobaseball.herokuapp.com/api/v1/franchises/id/1
 (replace 1 with the id of the batter you want)
 
 ```javascript 
-		body: {
-		"franchise": {
-			"active": "N"
-		},
-		"token": "1234456"  // example, your private token goes here
-		}
+body: {
+"franchise": {
+	"active": "N"
+},
+"token": "1234456"  // example, your private token goes here
+}
 ```
 
 Only put the data fields you would like to update, not all fields will be necessary for every put request
