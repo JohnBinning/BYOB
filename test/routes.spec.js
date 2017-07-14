@@ -23,7 +23,7 @@ describe('franchise routes', () => {
       });
   });
 
-  const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IidnYXJ5JyIsInBhc3N3b3JkIjoiJ2VsX2dhcnknIiwiaWF0IjoxNDk5OTkyODM5LCJleHAiOjE1MDEyMDI0Mzl9.Fl-QhVRJs24LvjSJeWWIu_sgTnb55lXgIyh6JTIakes';
+  const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IidnYXJ5JyIsInBhc3N3b3JkIjoiJ2VsX2dhcnknIiwiaWF0IjoxNDk5OTk0MzIyLCJleHAiOjE1MDEyMDM5MjJ9.MXC-LssvqyTrctSmcW_7qZGfNtXxFpQHQ5Gy_j3ngGQ"';
 
   it('should get the franchises', (done) => {
     chai.request(server)
