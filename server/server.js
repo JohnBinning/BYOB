@@ -288,7 +288,7 @@ app.delete('/api/v1/inducted_people/delete/:id', checkAuth, (request, response) 
   database('inducted_people').where('id', request.params.id).del()
     .then((resp) => {
       if (resp === 1) {
-        response.status(200).json({ resp: 'success' });
+        response.status(204).json({ resp: 'success' });
       } else {
         response.status(404).json({
           error: `could not find a person with id: ${request.params.id}`
@@ -490,6 +490,8 @@ app.post('/api/v1/pitcher_data', checkAuth, (request, response) => {
     response.status(201).json({ id: pitcherId[0] });
   })
   .catch((error) => {
+    console.log(error, 'person');
+
     response.status(500).json({ error });
   });
 });

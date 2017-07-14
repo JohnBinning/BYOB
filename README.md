@@ -17,6 +17,11 @@ Get to http://byobaseball.herokuapp.com/api/v1/franchises/id/3
 For a specific franchise by name:
 Get to http://byobaseball.herokuapp.com/api/v1/franchises/name/Colorado%20Rockies
 
+For active/not active franchises:
+Get to
+ http://byobaseball.herokuapp.com/api/v1/franchises/?active=y or active=n
+
+
 ##### Update Franchises (put)
 
 Put to http://byobaseball.herokuapp.com/api/v1/franchises/id/1
