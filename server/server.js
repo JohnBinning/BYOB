@@ -9,6 +9,8 @@ const jwt = require('jsonwebtoken');
 const port = (process.env.PORT || 3000);
 const app = express();
 
+console.log(process.env.CLIENT_SECRET);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -18,15 +20,16 @@ app.use((req, res, next) => {
   next();
 });
 
-if (!config.CLIENT_SECRET) {
+
+if (!process.env.CLIENT_SECRET) {
   throw 'Make sure you have a CLIENT_SECRET in your .env file';
 }
-app.set('secretKey', config.CLIENT_SECRET);
+app.set('secretKey', process.env.CLIENT_SECRET);
 
 app.post('/authenticate', (request, response) => {
   const user = request.body;
 
-  if (user.username !== config.USERNAME || user.password !== config.PASSWORD) {
+  if (user.username !== process.env.USERNAME || user.password !== process.env.PASSWORD) {
     response.status(403).send({
       success: false,
       message: 'Invalid Credentials'
