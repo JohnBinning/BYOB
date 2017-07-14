@@ -18,7 +18,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 if (!process.env.CLIENT_SECRET) {
   throw 'Make sure you have a CLIENT_SECRET in your .env file';
 }
