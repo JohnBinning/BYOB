@@ -74,7 +74,22 @@ const checkAuth = (request, response, next) => {
 // franchises
 
 app.get('/api/v1/franchises', (request, response) => {
-  database('franchises').select()
+  if (request.query && request.query.active) {
+    database('franchises').where('active', request.query.active.toUpperCase()).select()
+      .then((franchises) => {
+        if (franchises.length) {
+          response.status(200).json(franchises);
+        } else {
+          response.status(404).json({
+            error: 'No franchises found'
+          });
+        }
+      })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+  } else {
+    database('franchises').select()
     .then((franchises) => {
       if (franchises.length) {
         response.status(200).json(franchises);
@@ -84,9 +99,11 @@ app.get('/api/v1/franchises', (request, response) => {
         });
       }
     })
-  .catch((error) => {
-    response.status(500).json({ error });
-  });
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+  }
+
 });
 
 app.get('/api/v1/franchises/id/:id', (request, response) => {
