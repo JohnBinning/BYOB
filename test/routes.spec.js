@@ -79,6 +79,6 @@ describe('franchise routes', () => {
   //     response.body.message.should.equal('You must be authorized to hit this endpoint');
   //     done();
   //   });
-  });
+  // });
 
 });
