@@ -9,8 +9,6 @@ const jwt = require('jsonwebtoken');
 const port = (process.env.PORT || 3000);
 const app = express();
 
-console.log(process.env.CLIENT_SECRET);
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
