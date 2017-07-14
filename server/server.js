@@ -393,7 +393,7 @@ app.delete('/api/v1/batter_data/delete/:id', checkAuth, (request, response) => {
   database('batter_data').where('id', request.params.id).del()
     .then((resp) => {
       if (resp === 1) {
-        response.status(200).json({ resp: 'success' });
+        response.status(204).json({ resp: 'success' });
       } else {
         response.status(404).json({
           error: `could not find a batter with id: ${request.params.id}`
@@ -500,7 +500,7 @@ app.delete('/api/v1/pitcher_data/delete/:id', checkAuth, (request, response) => 
   database('pitcher_data').where('id', request.params.id).del()
     .then((resp) => {
       if (resp === 1) {
-        response.status(200).json({ resp: 'success' });
+        response.status(204).json({ resp: 'success' });
       } else {
         response.status(404).json({
           error: `could not find a pitcher with id: ${request.params.id}`

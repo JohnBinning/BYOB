@@ -403,28 +403,28 @@ describe('inducted people routes', () => {
   });
 
     it('should delete a person', (done) => {
-    chai.request(server)
-    .get('/api/v1/inducted_people')
-    .end((err, response) => {
-
-      response.body.length.should.equal(28);
-
       chai.request(server)
-      .delete('/api/v1/inducted_people/delete/1')
-      .send({ token: authToken })
-      .end((error, response) => {
-        response.should.have.status(204);
+      .get('/api/v1/inducted_people')
+      .end((err, response) => {
+
+        response.body.length.should.equal(28);
 
         chai.request(server)
-        .get('/api/v1/inducted_people')
-        .end((err, response) => {
+        .delete('/api/v1/inducted_people/delete/1')
+        .send({ token: authToken })
+        .end((error, response) => {
+          response.should.have.status(204);
 
-          response.body.length.should.equal(27);
-        })
-      done();
+          chai.request(server)
+          .get('/api/v1/inducted_people')
+          .end((err, response) => {
+
+            response.body.length.should.equal(27);
+          })
+        done();
+        });
       });
     });
-  });
 });
 
 describe('batter_data routes', () => {
@@ -564,6 +564,74 @@ describe('batter_data routes', () => {
     });
   });
 
+  it('should edit a batter', (done) => {
+      let newUpdate = {
+        "batter": {
+          "name": "Roy Hobbs"
+          },
+          token: authToken
+      }
+      chai.request(server)
+      .put('/api/v1/batter_data/id/1')
+      .send(newUpdate)
+      .end((err, response) => {
+
+        response.should.have.status(201);
+
+        chai.request(server)
+        .get('/api/v1/batter_data/id/1')
+        .end((err, response) => {
+
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body[0].should.be.a('object');
+          response.body[0].name.should.equal('Roy Hobbs');
+        done();
+        });
+      });
+    });
+
+    it('should not edit a batter if the id does not exist', (done) => {
+      let newUpdate = {
+        "batter": {
+          "name": "Roy Hobbs"
+          },
+          token: authToken
+      }
+      chai.request(server)
+      .put('/api/v1/batter_data/id/100000')
+      .send(newUpdate)
+      .end((err, response) => {
+
+        response.should.have.status(422);
+        done();
+        });
+    });
+
+    it('should delete a batter', (done) => {
+      chai.request(server)
+      .get('/api/v1/batter_data')
+      .end((err, response) => {
+
+        response.body.length.should.equal(12);
+
+        chai.request(server)
+        .delete('/api/v1/batter_data/delete/1')
+        .send({ token: authToken })
+        .end((error, response) => {
+          response.should.have.status(204);
+
+          chai.request(server)
+          .get('/api/v1/batter_data')
+          .end((err, response) => {
+
+            response.body.length.should.equal(11);
+          })
+        done();
+        });
+      });
+    });
+
 });
 
 describe('pitcher_data routes', () => {
@@ -698,6 +766,30 @@ describe('pitcher_data routes', () => {
         response.should.have.status(422);
         done();
         });
+    });
+
+    it('should delete a pitcher', (done) => {
+      chai.request(server)
+      .get('/api/v1/pitcher_data')
+      .end((err, response) => {
+
+        response.body.length.should.equal(10);
+
+        chai.request(server)
+        .delete('/api/v1/pitcher_data/delete/1')
+        .send({ token: authToken })
+        .end((error, response) => {
+          response.should.have.status(204);
+
+          chai.request(server)
+          .get('/api/v1/pitcher_data')
+          .end((err, response) => {
+
+            response.body.length.should.equal(9);
+          })
+        done();
+        });
+      });
     });
 });
 
