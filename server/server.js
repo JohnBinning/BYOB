@@ -177,6 +177,22 @@ app.post('/api/v1/franchises', checkAuth, (request, response) => {
   });
 });
 
+app.delete('/api/v1/franchises/delete/:id', checkAuth, (request, response) => {
+  database('franchises').where('id', request.params.id).del()
+    .then((resp) => {
+      if (resp === 1) {
+        response.status(200).json({ resp: 'success' });
+      } else {
+        response.status(404).json({
+          error: `could not find a franchise with id: ${request.params.id}`
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
+
 // inducted_people
 
 app.get('/api/v1/inducted_people', (request, response) => {
@@ -264,6 +280,22 @@ app.post('/api/v1/inducted_people', checkAuth, (request, response) => {
   .catch((error) => {
     response.status(500).json({ error });
   });
+});
+
+app.delete('/api/v1/inducted_people/delete/:id', checkAuth, (request, response) => {
+  database('inducted_people').where('id', request.params.id).del()
+    .then((resp) => {
+      if (resp === 1) {
+        response.status(200).json({ resp: 'success' });
+      } else {
+        response.status(404).json({
+          error: `could not find a person with id: ${request.params.id}`
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
 });
 
 // batters
@@ -355,6 +387,22 @@ app.post('/api/v1/batter_data', checkAuth, (request, response) => {
   });
 });
 
+app.delete('/api/v1/batter_data/delete/:id', checkAuth, (request, response) => {
+  database('batter_data').where('id', request.params.id).del()
+    .then((resp) => {
+      if (resp === 1) {
+        response.status(200).json({ resp: 'success' });
+      } else {
+        response.status(404).json({
+          error: `could not find a batter with id: ${request.params.id}`
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
+
 // pitchers
 
 app.get('/api/v1/pitcher_data', (request, response) => {
@@ -442,6 +490,22 @@ app.post('/api/v1/pitcher_data', checkAuth, (request, response) => {
   .catch((error) => {
     response.status(500).json({ error });
   });
+});
+
+app.delete('/api/v1/pitcher_data/delete/:id', checkAuth, (request, response) => {
+  database('pitcher_data').where('id', request.params.id).del()
+    .then((resp) => {
+      if (resp === 1) {
+        response.status(200).json({ resp: 'success' });
+      } else {
+        response.status(404).json({
+          error: `could not find a pitcher with id: ${request.params.id}`
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
 });
 
 
