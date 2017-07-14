@@ -181,7 +181,7 @@ app.delete('/api/v1/franchises/delete/:id', checkAuth, (request, response) => {
   database('franchises').where('id', request.params.id).del()
     .then((resp) => {
       if (resp === 1) {
-        response.status(200).json({ resp: 'success' });
+        response.status(204).json({ resp: 'success' });
       } else {
         response.status(404).json({
           error: `could not find a franchise with id: ${request.params.id}`
@@ -272,6 +272,8 @@ app.post('/api/v1/inducted_people', checkAuth, (request, response) => {
       });
     }
   }
+
+  // console.log(person);
 
   database('inducted_people').insert(person, 'id')
   .then((personId) => {
