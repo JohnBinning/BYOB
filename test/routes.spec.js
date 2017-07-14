@@ -402,30 +402,56 @@ describe('inducted people routes', () => {
       });
   });
 
-    it('should delete a person', (done) => {
-      chai.request(server)
-      .get('/api/v1/inducted_people')
-      .end((err, response) => {
+  it('should not edit a person w/o a token', (done) => {
+    let newUpdate = {
+      "person": {
+  			"name": "Roy Hobbs"
+  			},
+    }
+    chai.request(server)
+    .put('/api/v1/inducted_people/id/1')
+    .send(newUpdate)
+    .end((err, response) => {
 
-        response.body.length.should.equal(28);
+      response.should.have.status(403);
+      done();
+      });
+  });
+
+  it('should delete a person', (done) => {
+    chai.request(server)
+    .get('/api/v1/inducted_people')
+    .end((err, response) => {
+
+      response.body.length.should.equal(28);
+
+      chai.request(server)
+      .delete('/api/v1/inducted_people/delete/1')
+      .send({ token: authToken })
+      .end((error, response) => {
+        response.should.have.status(204);
 
         chai.request(server)
-        .delete('/api/v1/inducted_people/delete/1')
-        .send({ token: authToken })
-        .end((error, response) => {
-          response.should.have.status(204);
+        .get('/api/v1/inducted_people')
+        .end((err, response) => {
 
-          chai.request(server)
-          .get('/api/v1/inducted_people')
-          .end((err, response) => {
-
-            response.body.length.should.equal(27);
-          })
-        done();
-        });
+          response.body.length.should.equal(27);
+        })
+      done();
       });
     });
-});
+  });
+
+  it('should not delete a person w/o a correct token', (done) => {
+    chai.request(server)
+      .delete('/api/v1/inducted_people/delete/1')
+      .send({ token: '42' })
+      .end((error, response) => {
+        response.should.have.status(403);
+      done()
+    })
+    });
+  });
 
 describe('batter_data routes', () => {
     beforeEach((done) => {
@@ -632,6 +658,16 @@ describe('batter_data routes', () => {
       });
     });
 
+    it('should not delete a batter w/o a correct token', (done) => {
+      chai.request(server)
+        .delete('/api/v1/batter_data/delete/1')
+        .send({ token: '42' })
+        .end((error, response) => {
+          response.should.have.status(403);
+        done()
+      })
+    });
+
 });
 
 describe('pitcher_data routes', () => {
@@ -791,6 +827,14 @@ describe('pitcher_data routes', () => {
         });
       });
     });
+
+    it('should not delete a pitcher w/o a correct token', (done) => {
+      chai.request(server)
+        .delete('/api/v1/pitcher_data/delete/1')
+        .send({ token: '42' })
+        .end((error, response) => {
+          response.should.have.status(403);
+        done()
+      })
+    });
 });
-
-
