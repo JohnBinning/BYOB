@@ -30,7 +30,7 @@ Put to http://byobaseball.herokuapp.com/api/v1/franchises/id/1
 ```javascript 
 body: {
 "franchise": {
-	"active": "N"
+  "active": "N"
 },
 "token": "1234456"  // example, your private token goes here
 }
@@ -48,11 +48,11 @@ Post to http://byobaseball.herokuapp.com/api/v1/franchises
 
 body: {
 	"newFranchise": {
-		"franch_id": "BNB",
-		"franch_name": "Bad News Bears",
-		"active": "Y",
-		"league": "Little",
-		"founded": "1976"
+	  "franch_id": "BNB",
+	  "franch_name": "Bad News Bears",
+	  "active": "Y",
+	  "league": "Little",
+	  "founded": "1976"
 	},
 	"token": "1234456"  // example, your private token goes here
 }
@@ -96,7 +96,7 @@ Put to http://byobaseball.herokuapp.com/api/v1/inducted_people/id/1
 
 body: {
 	"person": {
-		"name": "Roy Hobbs"
+	  "name": "Roy Hobbs"
 	},
 	"token": "1234456"  // example, your private token goes here
 	}
@@ -114,13 +114,13 @@ Posts to new people must include a correct team_id for a franchise that has alre
 
 body: {
 	"newPerson": {
-		"career": "1984-2017",
-		"induction_method": "BBWAA",
-		"name": "Roy Hobbs",
-		"primary_team": "Detroit Tigers",
-		"vote_percentage": "88",
-		"year_inducted": "2017",
-		"team_id": "35"
+	  "career": "1984-2017",
+	  "induction_method": "BBWAA",
+	  "name": "Roy Hobbs",
+	  "primary_team": "Detroit Tigers",
+	  "vote_percentage": "88",
+	  "year_inducted": "2017",
+	  "team_id": "35"
 	},
 	"token": "1234456"  // example, your private token goes here
 }
@@ -129,13 +129,13 @@ body: {
 
 body: {
 	"newPerson": {
-		"career": "1984-1996",
-		"induction_method": "BBWAA",
-		"name": "Ricky Vaughn",
-		"primary_team": "Cleveland Indians",
-		"vote_percentage": "91",
-		"year_inducted": "2017",
-		"team_id": 28
+	  "career": "1984-1996",
+	  "induction_method": "BBWAA",
+	  "name": "Ricky Vaughn",
+	  "primary_team": "Cleveland Indians",
+	  "vote_percentage": "91",
+	  "year_inducted": "2017",
+	  "team_id": 28
 	},
 	"token": "1234456"  // example, your private token goes here
 }
@@ -178,11 +178,11 @@ Put to http://byobaseball.herokuapp.com/api/v1/batter_data/id/1
 ```javascript 
 
 body: {
-		"batter": {
-			"hr": "77"
-			},
-			"token": "1234456"  // example, your private token goes here
-		}
+	"batter": {
+	  "hr": "77"
+      },
+	"token": "1234456"  // example, your private token goes here
+}
 
 ```
 
@@ -199,16 +199,16 @@ Post to http://byobaseball.herokuapp.com/api/v1/batter_data
 
 body: {
 	"newBatter": {
-		"avg": ".350",
-		"hits": "140",
-		"hr": "44",
-		"name": "Roy Hobbs",
-		"induction_id": 309,
-		"obp": ".447",
-		"rbi": "106",
-		"runs": "92",
-		"sb": "3",
-		"slg": ".750"
+	  "avg": ".350",
+	  "hits": "140",
+	  "hr": "44",
+	  "name": "Roy Hobbs",
+	  "induction_id": 309,
+	  "obp": ".447",
+	  "rbi": "106",
+	  "runs": "92",
+	  "sb": "3",
+	  "slg": ".750"
 	},
 	"token": "1234456"  // example, your private token goes here
 }
@@ -253,12 +253,12 @@ Put to http://byobaseball.herokuapp.com/api/v1/pitcher_data/id/1
 
 
 body: {
-		"pitcher": {
-			"era": "3.18",
-			"wins": "201"
-			},
-			"token": "1234456"  // example, your private token goes here
-		}
+	"pitcher": {
+	  "era": "3.18",
+	  "wins": "201"
+	},
+	"token": "1234456"  // example, your private token goes here
+}
 
 ```
 
@@ -274,15 +274,15 @@ A corresponding inducted person is required before posting a pitcher.  The induc
 
 body: {
 	"newPitcher": {
-		"name": "Ricky Vaughn",
-		"games": "189",
-		"starts": "103",
-		"wins": "46",
-		"losses": "40",
-		"era": "3.76",
-		"strikeouts": "613",
-		"walks": "325",
-		"induction_id": 310
+	  "name": "Ricky Vaughn",
+	  "games": "189",
+	  "starts": "103",
+	  "wins": "46",
+	  "losses": "40",
+	  "era": "3.76",
+	  "strikeouts": "613",
+	  "walks": "325",
+	  "induction_id": 310
 	},
 	"token": "1234456"  // example, your private token goes here
 }
