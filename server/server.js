@@ -5,6 +5,7 @@ const database = require('knex')(configuration);
 const bodyParser = require('body-parser');
 const config = require('dotenv').config().parsed;
 const jwt = require('jsonwebtoken');
+const path = require('path');
 
 const port = (process.env.PORT || 3000);
 const app = express();
@@ -70,6 +71,12 @@ const checkAuth = (request, response, next) => {
 };
 
 // routes
+
+// home page
+
+app.get('/', (request, response) => {
+  response.sendFile(path.join(__dirname + '/index.html'))
+})
 
 // franchises
 
@@ -490,8 +497,6 @@ app.post('/api/v1/pitcher_data', checkAuth, (request, response) => {
     response.status(201).json({ id: pitcherId[0] });
   })
   .catch((error) => {
-    console.log(error, 'person');
-
     response.status(500).json({ error });
   });
 });
