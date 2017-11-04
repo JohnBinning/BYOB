@@ -1,0 +1,63 @@
+body {
+  background-color: #32420F;
+  background-image: url('assets/baseballField.jpg');
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: 'Cabin Sketch', cursive;
+}
+
+header {
+  color: #FDFDFD;
+  /*font-family: 'Homemade Apple', cursive;
+  font-family: 'Arizonia', cursive;
+  font-family: 'Patrick Hand SC', cursive;
+
+  font-family: 'Playball', cursive;*/
+  font-size: 3rem;
+  margin-top: 5%;
+}
+
+#burns {
+  line-height: 22pt;
+  margin: 2%;
+  font-size: 1.3rem;
+  /*background-color: rgba(255, 255, 255, .35);*/
+}
+
+#burns-container {
+  margin: 4%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, .35);
+  color: #FDFDFD;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#button-container {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#target-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, .35);
+  color: #FDFDFD;
+  /*max-width: 60%;*/
+}
+
+#quote {
+  /*margin-left: 15px;*/
+  max-width: 140px;
+}

@@ -8,9 +8,10 @@ const createPerson = (knex, person) => {
     primary_team: person.primaryTeam,
     vote_percentage: person.votePercentage,
     year_inducted: person.yearInducted,
+    induction_method: person.inductionMethod,
     team_id: person.teamId,
   }, 'id');
-};
+}; 
 
 exports.seed = (knex, Promise) => {
   return knex('inducted_people').del()

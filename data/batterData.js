@@ -133,7 +133,7 @@ const batterData = [
     { avg: '.329',
     hits: '2,995',
     hr: '97',
-    name: 'Cap Anson (bio)',
+    name: 'Cap Anson',
     inductionId: 17,
     obp: '.395',
     rbi: '1,879',
