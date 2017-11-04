@@ -2,7 +2,9 @@ const clearTarget = () => {
   $('#target').html('');
 }
 
-$('#quote').on('click', () => {
+let shown = false;
+
+const show = () => {
   $('#burns').html(`"It is played everywhere. In parks and playgrounds and prison yards. 
       In back alleys and farmers fields. By small children and by old men. 
       By raw amateurs and millionare professionals. It is a leisurely game that demands blinding speed. 
@@ -16,6 +18,18 @@ $('#quote').on('click', () => {
       And it reflects a host of age-old American tensions: between workers and owners, scandal and reform, 
       the individual and the collective. It is a haunted game, where each player is measured by the ghosts of those who have gone before. 
       Most of all, it is about time and timelessness; speed and grace; failure and loss; imperishable hope; and coming home." <em> -Ken Burns</em>`);
+}
+
+const hide = () => {
+  $('#burns').html(`"It is played everywhere. In parks and playgrounds and prison yards. 
+      In back alleys and farmers fields. By small children and by old men. 
+      By raw amateurs and millionare professionals... 
+      <em> -Ken Burns</em>`);
+}
+
+$('#quote').on('click', () => {
+  shown ? hide() : show();
+  shown = !shown;
 })
 
 $('.franchises').on('click', () => {
