@@ -47,3 +47,7 @@ header {
   color: #FDFDFD;
   /*max-width: 60%;*/
 }
+
+#quote {
+  margin-left: 15px;
+}

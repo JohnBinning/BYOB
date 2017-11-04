@@ -2,6 +2,22 @@ const clearTarget = () => {
   $('#target').html('');
 }
 
+$('#quote').on('click', () => {
+  $('#burns').html(`"It is played everywhere. In parks and playgrounds and prison yards. 
+      In back alleys and farmers fields. By small children and by old men. 
+      By raw amateurs and millionare professionals. It is a leisurely game that demands blinding speed. 
+      The only game where the defense has the ball. It follows the seasons, beginning each year with the fond expectancy of springtime and ending with the hard facts of autumn. 
+      Americans have played baseball for more than 200 years, while they conquered a continent, 
+      warred with one another and with enemies abroad, struggled over labor and civil rights, and the meaning of freedom.
+      At the game's heart lie mythic contradictions: a pastoral game, born in crowded cities; 
+      an exhilarating democratic sport that tolerates cheating; and it has excluded as many as it has included; 
+      a profoundly conservative game that sometimes manages to be years ahead of its time. 
+      It is an American odyssey that links sons and daughters to fathers and grandfathers. 
+      And it reflects a host of age-old American tensions: between workers and owners, scandal and reform, 
+      the individual and the collective. It is a haunted game, where each player is measured by the ghosts of those who have gone before. 
+      Most of all, it is about time and timelessness; speed and grace; failure and loss; imperishable hope; and coming home." <em> -Ken Burns</em>`);
+})
+
 $('.franchises').on('click', () => {
   fetch('/api/v1/franchises')
   .then((res) => res.json())
