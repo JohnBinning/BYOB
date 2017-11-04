@@ -1,7 +1,30 @@
 body {
   background-color: green;
+  background-image: url('assets/baseballField.jpg');
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 header {
-  color: orange;
+  color: #FDFDFD;
+  /*font-family: 'Homemade Apple', cursive;
+  font-family: 'Arizonia', cursive;
+  font-family: 'Patrick Hand SC', cursive;
+
+  font-family: 'Playball', cursive;*/
+  font-size: 3rem;
+  margin-top: 5%;
+}
+
+#burns {
+  margin: 4%;
+  padding: 20px;
+  line-height: 22pt;
+  font-size: 1.3rem;
+  /*background-color: rgba(255, 255, 255, .35);*/
+  background-color: rgba(0, 0, 0, .35);
+  color: #FDFDFD;
+  border-radius: 15px;
 }
