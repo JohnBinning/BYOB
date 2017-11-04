@@ -1,6 +1,10 @@
 # BYOB - Build Your Own Backend
 ### Baseball Hall of Fame API
 
+### It also has a frontend
+
+[You can check it out here](http://byobaseball.herokuapp.com/)
+
 ### Endpoints
 
 #### Franchises
