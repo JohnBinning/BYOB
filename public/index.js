@@ -18,6 +18,7 @@ const show = () => {
       And it reflects a host of age-old American tensions: between workers and owners, scandal and reform, 
       the individual and the collective. It is a haunted game, where each player is measured by the ghosts of those who have gone before. 
       Most of all, it is about time and timelessness; speed and grace; failure and loss; imperishable hope; and coming home." <em> -Ken Burns</em>`);
+  $('#show').html('Collapse');
 }
 
 const hide = () => {
@@ -25,6 +26,7 @@ const hide = () => {
       In back alleys and farmers fields. By small children and by old men. 
       By raw amateurs and millionare professionals... 
       <em> -Ken Burns</em>`);
+  $('#show').html('Expand');
 }
 
 $('#quote').on('click', () => {

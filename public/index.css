@@ -1,6 +1,7 @@
 body {
   background-color: #32420F;
   background-image: url('assets/baseballField.jpg');
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   text-align: center;
