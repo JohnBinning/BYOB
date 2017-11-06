@@ -8,14 +8,10 @@ body {
   align-items: center;
   font-family: 'Cabin Sketch', cursive;
   text-shadow: 2px 2px 20px rgba(189, 58, 50, .42);
+  color: #FDFDFD;
 }
 
-header {
-  color: #FDFDFD;
-  /*font-family: 'Homemade Apple', cursive;
-  font-family: 'Arizonia', cursive;
-  font-family: 'Patrick Hand SC', cursive;
-  font-family: 'Playball', cursive;*/
+h1 {
   font-size: 3rem;
   margin-top: 5%;
 }
@@ -28,9 +24,9 @@ header {
 
 #burns-container,
 .card,
-#instructions {
+#instructions,
+h2 {
   background-color: rgba(0, 0, 0, .35);
-  color: #FDFDFD;
   border-radius: 15px;
 }
 
@@ -47,6 +43,10 @@ a {
 
 button:hover {
   cursor: pointer;
+}
+
+button {
+  outline: none;
 }
 
 #burns-container {
@@ -69,9 +69,14 @@ button:hover {
   align-items: center;
 }
 
-.card {
+.card,
+h2 {
   margin: 10px;
   padding: 10px;
+}
+
+h2 {
+  font-size: 2.3rem;
 }
 
 #quote {

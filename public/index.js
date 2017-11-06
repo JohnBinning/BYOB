@@ -29,9 +29,13 @@ const hide = () => {
   $('#show').html('Expand');
 }
 
-$('#quote').on('click', () => {
+const handleQuoteVis = () => {
   shown ? hide() : show();
   shown = !shown;
+}
+
+$('#quote').on('click', () => {
+  handleQuoteVis();
 })
 
 $('.franchises').on('click', () => {
@@ -39,6 +43,7 @@ $('.franchises').on('click', () => {
   .then((res) => res.json())
   .then((franchises) => {
     clearTarget();
+    $('#target').prepend('<h2>Franchises:</h2>');
     franchises.forEach((franch) => {
       let { franch_name, franch_id, active, league } = franch;
       if (!league) league = 'No Data';
@@ -59,8 +64,9 @@ $('.people').on('click', () => {
   .then((res) => res.json())
   .then((people) => {
     clearTarget();  
+    $('#target').prepend('<h2>People:</h2>');
     people.forEach((person) => {
-      let { name, career, induction_method, position } = person;
+      const { name, career, induction_method, position } = person;
       $('#target').append(`
       <article class='card'>
         <div>Name: ${name}</div>
@@ -78,8 +84,9 @@ $('.batters').on('click', () => {
   .then((res) => res.json())
   .then((batters) => {
     clearTarget();  
+    $('#target').prepend('<h2>Batters:</h2>');
     batters.forEach((batter) => {
-      let { name, avg, hits, hr, obp, rbi, runs, slg, sb } = batter;
+      const { name, avg, hits, hr, obp, rbi, runs, slg, sb } = batter;
       const ops = Number(obp) + Number(slg);
       $('#target').append(`
       <article class='card'>
@@ -103,10 +110,10 @@ $('.pitchers').on('click', () => {
   fetch('/api/v1/pitcher_data')
   .then((res) => res.json())
   .then((pitchers) => {
-    console.log(pitchers)
     clearTarget();  
+    $('#target').prepend('<h2>Pitchers:</h2>');
     pitchers.forEach((pitcher) => {
-      let { name, games, starts, era, wins, losses, strikeouts, walks } = pitcher;
+      const { name, games, starts, era, wins, losses, strikeouts, walks } = pitcher;
       $('#target').append(`
       <article class='card'>
         <div>Name: ${name}</div>
