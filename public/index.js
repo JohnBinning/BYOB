@@ -43,7 +43,7 @@ $('.franchises').on('click', () => {
   .then((res) => res.json())
   .then((franchises) => {
     clearTarget();
-    $('#target').prepend('<h2>Franchises:</h2>');
+    $('#target').prepend('<h2 id="info-title">Franchises:</h2>');
     franchises.forEach((franch) => {
       let { franch_name, franch_id, active, league } = franch;
       if (!league) league = 'No Data';
@@ -64,7 +64,7 @@ $('.people').on('click', () => {
   .then((res) => res.json())
   .then((people) => {
     clearTarget();  
-    $('#target').prepend('<h2>People:</h2>');
+    $('#target').prepend('<h2 id="info-title">People:</h2>');
     people.forEach((person) => {
       const { name, career, induction_method, position } = person;
       $('#target').append(`
@@ -84,7 +84,7 @@ $('.batters').on('click', () => {
   .then((res) => res.json())
   .then((batters) => {
     clearTarget();  
-    $('#target').prepend('<h2>Batters:</h2>');
+    $('#target').prepend('<h2 id="info-title">Batters:</h2>');
     batters.forEach((batter) => {
       const { name, avg, hits, hr, obp, rbi, runs, slg, sb } = batter;
       const ops = Number(obp) + Number(slg);
@@ -111,7 +111,7 @@ $('.pitchers').on('click', () => {
   .then((res) => res.json())
   .then((pitchers) => {
     clearTarget();  
-    $('#target').prepend('<h2>Pitchers:</h2>');
+    $('#target').prepend('<h2 id="info-title">Pitchers:</h2>');
     pitchers.forEach((pitcher) => {
       const { name, games, starts, era, wins, losses, strikeouts, walks } = pitcher;
       $('#target').append(`
